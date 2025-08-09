@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@iconify/vue": "^5.0.0",
+    "@vueuse/components": "^13.6.0",
+    "@vueuse/core": "^13.6.0",
+    "@vueuse/motion": "^3.0.3",
+    "@vueuse/shared": "^13.6.0",
+    "animate.css": "^4.1.1",
+    "element-plus": "^2.10.6"
+  }
+}

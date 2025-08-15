@@ -28,17 +28,17 @@
                 <i18n-t keypath="7">
                     <template #t8>
                         <el-button link class="!pa-0 !border-0 !align-baseline" tag="router-link" type="danger"
-                            to="/medicine/services/">{{ t(8) }}</el-button>
+                            to="/services/">{{ t(8) }}</el-button>
                     </template>
                     <template #t9>
                         <el-button link class="!pa-0 !border-0 !align-baseline !ml-0" tag="router-link" type="danger"
-                            to="/medicine/support/">{{ t(9) }}</el-button>
+                            to="/support/">{{ t(9) }}</el-button>
                     </template>
                 </i18n-t>
             </el-text>
             <el-text class="!mb-4">{{ t(10) }}</el-text>
         </div>
-        <div class="not-prose mt-12"><el-button type="danger" size="large" tag="router-link" to="/medicine/about/">{{
+        <div class="not-prose mt-12"><el-button type="danger" size="large" tag="router-link" to="/about/">{{
             t(11)
                 }}&nbsp;<Icon icon="fa-solid:angle-right" class="size-7"></Icon></el-button></div>
         <div class="my-12"><el-divider></el-divider></div>
@@ -53,7 +53,7 @@
         </div>
     </div>
     <el-carousel height="80dvh" arrow="always" autoplay class="my-28" indicator-position="none" un-cloak>
-        <el-carousel-item v-for="{ images: [{ url }], icon, to, id } in the.children" :key="id"
+        <el-carousel-item v-for="{ images: [{ url }], icon, to, id } in the.parent.$children.slice(1)" :key="id"
             :class="`bg-[url(${url})]`" class="min-h-[70dvh] bg-center bg-cover !flex">
             <div class="flex-auto bg-black/50 flex items-center">
                 <div class="container mx-auto text-white flex flex-col items-center text-center gap-4">
@@ -110,7 +110,7 @@ import { UseElementVisibility } from "@vueuse/components";
 const { id } = defineProps(["id"]),
     pages = inject("pages"),
     the = pages[id],
-    childfree = Object.values(pages).filter(({ children, enabled }) => enabled && children.length === 0),
+    childfree = Object.values(pages).filter(({ children, enabled }) => enabled && children.length === 0).slice(1),
     services = Object.values(pages).find(({ name }) => name === "services"),
     slide = reactive({}),
     { url: logoUrl } = the.images.find(({ alt }) => alt === "логотип"),

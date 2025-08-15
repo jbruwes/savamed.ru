@@ -60,6 +60,32 @@ const { id } = defineProps(["id"]),
     { t, tm } = useI18n({
         messages: {
             en: {
+                0: "Services for planned and emergency hospitalization with full medical support throughout the treatment and rehabilitation period for patients with COVID-19",
+                1: "Coronaviruses are a large family of viruses. Some of them are known to cause respiratory infections in humans, ranging from the common cold to more severe diseases.",
+                2: "The most recently discovered coronavirus causes the disease COVID-19. Most people infected with COVID-19 experience mild or moderate symptoms and recover without specific treatment. However, for some individuals, the disease takes a severe course and requires medical care.",
+                3: "If you or your loved ones suspect infection, have already been diagnosed with COVID-19, or require rehabilitation after treatment, the company \"{t4}\" will quickly arrange hospitalization in the most competent and reliable clinical centers for treating COVID-19:",
+                4: "Vsya Meditsina",
+                "list1": [
+                    "City Clinical Hospital No. 15 named after O.M. Filatov",
+                    "City Clinical Hospital No. 67 named after L.A. Vorokhobov",
+                    "City Clinical Hospital No. 52",
+                    "City Clinical Hospital No. 40",
+                    "N.I. Pirogov First Moscow State Medical University Emergency Care Research Institute (SKLIF)",
+                    "City Clinical Hospital No. 61 (Clinical Hospital No. 4 of the First Moscow State Medical University named after I.M. Sechenov)"
+                ],
+                5: "Our advantages:",
+                "list2": [
+                    "urgent hospitalization",
+                    "dispatch of an ambulance team within up to 3 hours",
+                    "patient transportation from home to the hospital",
+                    "guaranteed careful and respectful treatment of the patient",
+                    "individual approach",
+                    "full range of the most relevant treatment methods for COVID-19",
+                    "daily monitoring of the patient’s treatment and condition",
+                    "daily contact with relatives"
+                ],
+                6: "company services",
+                7: "back to home page"
             },
             ru: {
                 0: "Услуги по плановой и экстренной госпитализации с полным медицинским сопровождением на весь период лечения и реабилитации пациентов с COVID-19",

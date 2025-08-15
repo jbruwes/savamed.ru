@@ -16,10 +16,10 @@
 </div>
             </template>
             <template #title>
-                <div class="text-3xl">{{ t(0) }}</div>
+                <icon :icon="t(0)" class="size-8"></icon>
             </template>
             <template #extra>
-                <el-button circle @click="drawer = true">
+                <el-button circle @click="drawer = true" size="large">
                     <icon icon="fa-solid:bars" class="size-5"></icon>
                 </el-button>
             </template>
@@ -48,7 +48,7 @@
                         <el-text tag="div">{{ t(4) }}</el-text>
                         <el-text tag="div">{{ t(5) }}</el-text>
                         <div><el-button class="!pl-0 !border-l-0" type="danger" link tag="router-link"
-                                to="/medicine/contacts/">{{ t(6) }}</el-button>
+                                to="/contacts/">{{ t(6) }}</el-button>
                         </div>
                     </div>
                 </div>
@@ -76,11 +76,11 @@
     </div>
     <div id="drawer" un-cloak>
         <el-drawer v-model="drawer" class="w-full sm:w-96" size="">
-            <template #header>
+            <!--template #header>
                 <router-link class="w-full" to="/"><icon :icon="the.icon" class="mr-4 size-8 inline-block"></icon>{{ $t(`title['${the.id}']`) }}</router-link>
-            </template>
+            </template-->
             <el-menu :router="true">
-                <template v-for="{ $children, icon, id } in the.$children[0].$children">
+                <template v-for="{ $children, icon, id } in the.$children">
                     <el-sub-menu :index="id" v-if="$children.length">
                         <template #title>
                             <icon :icon="icon" class="mr-4 size-8"></icon><span class="truncate">{{ $t(`title["${id}"]`)
@@ -105,12 +105,12 @@
 
 <script setup>
 
-import { getCurrentInstance, inject, ref } from "vue";
+import { getCurrentInstance, inject, ref, watch } from "vue";
 import { Icon } from "@iconify/vue";
 import ElementPlus from "element-plus";
 import { createI18n, useI18n } from "vue-i18n";
 import { RouterLink } from "vue-router";
-//import { useRoute } from "vue-router";
+import { useRoute } from "vue-router";
 
 const { appContext: { app } } = getCurrentInstance(),
     { id } = defineProps(["id"]),
@@ -169,7 +169,7 @@ app.component("Icon", Icon);
 app.use(ElementPlus);
 app.use(i18n);
 
-const //route = useRoute(),
+const route = useRoute(),
     the = pages[id],
     drawer = ref(false),
 /*    breadcrumbs = computed(() => {
@@ -183,7 +183,7 @@ const //route = useRoute(),
     { t } = useI18n({
         messages: {
             en: {
-                0: "🇷🇺",
+                0: "circle-flags:ru",
                 1: "Компания \"Вся Медицина\"",
                 2: "user agreement",
                 3: "consent to data processing",
@@ -194,7 +194,7 @@ const //route = useRoute(),
                 8: "VueBro is a convenient and flexible tool for managing a website"
             },
             ru: {
-                0: "🇬🇧",
+                0: "circle-flags:gb",
                 1: "Компания \"Вся Медицина\"",
                 2: "пользовательское соглашение",
                 3: "согласие на обработку данных",
@@ -206,7 +206,8 @@ const //route = useRoute(),
             }
         }
     });
-__unocss_runtime.extract(["truncate", "mr-4", "size-8"])
+__unocss_runtime.extract(["truncate", "mr-4", "size-8"]);
+watch(() => route.name, () => { drawer.value = false });
 </script>
 
 <style scoped>

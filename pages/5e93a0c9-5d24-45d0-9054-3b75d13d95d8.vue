@@ -88,8 +88,8 @@
                 </div>
                 <template #footer>
                     <router-link class="flex flex-col items-start gap-4 lg:flex-row" :to="to">
-                        <div class="flex items-center">
-                            <icon :icon="icon" class="size-7"></icon>
+                        <div class="flex items-center hvr-icon-wobble-vertical">
+                            <icon :icon="icon" class="size-7 hvr-icon"></icon>
                         </div>
                         <div class="flex flex-col items-start justify-center w-full min-w-0 gap-0 text-base">
                             <h3 class="mb-4 text-lg leading-6 text-slate-700">{{ $t(`title["${id}"]`) }}</h3>

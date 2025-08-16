@@ -12,14 +12,14 @@
     </div>
     <div class="container mx-auto not-prose my-24 px-4 overflow-hidden">
         <UseElementVisibility v-slot="{ isVisible }"
-            v-for="({ images, to, title, description, icon }, i) in the.$children" :key="id" class="not-prose">
+            v-for="{ images, to, icon, id } in the.$children" :key="id" class="not-prose">
             <div class="my-4 flex flex-col items-start gap-4 sm:flex-row animate__animated animate__faster"
                 :class="{ animate__fadeInRight: isVisible, invisible: !isVisible }">
-                <div @mouseover="slide[i] = true" @mouseleave="slide[i] = false" :class="`bg-[url(${images[0].url})]`"
+                <div @mouseover="slide[id] = true" @mouseleave="slide[id] = false" :class="`bg-[url(${images[0].url})]`"
                     class="flex w-full h-48 sm:w-48 sm:h-24 bg-center bg-cover overflow-hidden rounded">
                     <transition enter-active-class="animate__animated animate__slideInUp animate__faster"
                         leave-active-class="animate__animated animate__slideOutUp  animate__faster">
-                        <router-link v-if="slide[i]" class="bg-white/85 flex-auto flex justify-center items-center"
+                        <router-link v-if="slide[id]" class="bg-white/85 flex-auto flex justify-center items-center"
                             :to="to">
                             <el-button size="large" circle="" tag="router-link" :to="to">
                                 <icon :icon="icon"></icon>
@@ -31,9 +31,9 @@
                     <icon :icon="icon" class="size-10 hvr-icon group-hover:text-sky-800"></icon>
                     <div class="flex flex-col items-start justify-center w-full min-w-0 gap-0 text-base">
                         <el-text size="large" tag="b" class="mb-4 w-full group-hover:text-sky-800">
-                            {{ title }}
+                            {{ $t(`title["${id}"]`) }}
                         </el-text>
-                        <el-text class="w-full">{{ description }}</el-text>
+                        <el-text class="w-full">{{ $t(`description["${id}"]`) }}</el-text>
                     </div>
                 </router-link>
             </div>
@@ -43,21 +43,12 @@
 
 <script setup lang="js">
 import { inject, reactive } from "vue";
-import { useI18n } from "vue-i18n";
 import { UseElementVisibility } from "@vueuse/components";
 
 const { id } = defineProps(["id"]),
     pages = inject("pages"),
     the = pages[id],
-    slide = reactive([]),
-    { t } = useI18n({
-        messages: {
-            en: {
-            },
-            ru: {
-            }
-        }
-    });
+    slide = reactive({});
 
 __unocss_runtime.extract("bg-white/85");
 
